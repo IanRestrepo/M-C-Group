@@ -1,0 +1,70 @@
+---
+import { Icon } from "astro-icon/components";
+import SideImage from "@assets/LogoTrucking.svg";
+const navLinks = [
+  { href: "/dashboard", icon: "home" },
+  { href: "/dashboard/admins", icon: "admins" },
+  { href: "/dashboard/posts", icon: "cloud-post" },
+  { href: "/dashboard/tickets", icon: "tickets" },
+];
+---
+
+<nav class="bg-black w-[4.8rem] transition-all">
+  <img src={SideImage.src} alt="Logo" class="px-2 py-4" />
+  <ul>
+    {
+      navLinks.map(({ href, icon }) => (
+        <li class="text-white">
+          <a href={href} class="flex gap-4">
+            <Icon name={icon} class="text-white mx-auto my-5" id="icon" />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <button
+    class="flex items-center justify-center text-center w-full py-4"
+    id="logout"
+  >
+    <Icon name="logout" class="text-white" />
+  </button>
+</nav>
+
+<script is:inline>
+  const button = document.getElementById("logout");
+
+  button?.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+      try {
+        const sessionToken = document.cookie
+          .split("; ")
+          .find((row) => row.startsWith("session_token="))
+          ?.split("=")[1];
+
+        if (!sessionToken) {
+          console.error("No session token found");
+          return;
+        }
+
+        // Hacer la petición POST al endpoint de logout
+        const response = await fetch("/api/auth/logout", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ sessionToken }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          window.location.reload();
+        } else {
+          console.error("Error during logout:", data.errorMessage);
+        }
+      } catch (error) {
+        console.error("Error during logout:", error);
+      }
+  });
+</script>

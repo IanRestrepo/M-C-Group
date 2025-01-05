@@ -1,0 +1,38 @@
+---
+import { PROJECT_SETTINGS } from "@lib/constants";
+import NavBar from "@components/dashboard/NavBar.astro";
+import SideImage from "@assets/LogoTrucking.svg";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{PROJECT_SETTINGS.PROJECT_NAME}</title>
+  </head>
+  <body>
+    <main class="min-h-screen w-full bg-neutral-900 flex overflow-x-hidden relative selection:bg-lime-700 selection:text-lime-300">
+        <NavBar />
+        <div class="flex-1 overflow-auto h-screen relative">
+            <slot />
+            <img 
+              src={SideImage.src} 
+              alt="Logo" 
+              class="absolute inset-0 m-auto opacity-20 w-64 h-64 pointer-events-none"
+            />
+        </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>

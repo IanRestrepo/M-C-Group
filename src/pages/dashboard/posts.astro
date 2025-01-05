@@ -1,0 +1,28 @@
+---
+import { queryDb } from '@lib/db';
+
+import DashboardLayout from '@layouts/DashboardLayout.astro';
+
+// Primero obtener el session_token de la cookie
+const sessionToken = Astro.cookies.get('session_token')?.value;
+
+// Luego obtener el usuario usando el token
+const user = await queryDb(`
+  SELECT Users.username
+  FROM Users
+  JOIN Sessions ON Users.id = Sessions.user_id
+  WHERE Sessions.session_token = ? 
+  AND Sessions.expires_at > datetime('now')
+`, [sessionToken]);
+
+const username = user?.rows[0]?.username || 'Guest';
+---
+
+<DashboardLayout>
+<section class="py-10 px-5 text-white w-full">
+    <h1>Welcome { username }</h1>
+    <section class="bg-neutral-950 border border-neutral-800 my-5 h-full py-5 px-5 rounded-lg">
+        <h1 class="text-center font-mono text-xl text-red-400 italic"> Posts Not aviable yet</h1>
+    </section>
+</section>
+</DashboardLayout>

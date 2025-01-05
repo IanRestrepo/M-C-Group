@@ -1,0 +1,15 @@
+---
+import SignInForm from "@components/SignInForm.astro";
+import astro from "@assets/LogoTrucking.svg"
+---
+
+<div class="w-1/2 m-auto h-full content-center">
+    <div class="my-8 text-center">
+        <img src={astro.src} alt="Logo Trucking" class="m-auto">
+        <h1 class="font-semibold text-2xl selection:bg-lime-800 selection:text-lime-400">Welcome admin</h1>
+        <p class="text-wrap text-neutral-500 selection:bg-lime-800 selection:text-lime-400">Login and interactue with your community right now</p>
+    </div>
+
+        <SignInForm action='/api/auth/login'/>
+        
+</div>

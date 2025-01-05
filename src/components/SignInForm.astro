@@ -1,0 +1,26 @@
+---
+import { Icon } from 'astro-icon/components'
+interface Props {
+    action?: string,
+}
+
+const { action } = Astro.props;
+---
+<form id="loginForm" method="post" action={ action } class="flex flex-col gap-4">
+    <input type="email" name="email" id="email" required  class="rounded-lg text-lime-400 border border-1 border-neutral-700 bg-neutral-950 py-1 px-3 placeholder-neutral-600 outline-none focus:ring-1 ring-lime-800 selection:bg-lime-800 selection:text-lime-400" placeholder="Email" autocomplete="off">
+    <input type="password" name="password" id="password" required class="rounded-lg text-lime-400 border border-1 border-neutral-700 bg-neutral-950 py-1 px-3 placeholder-neutral-600 outline-none focus:ring-1 ring-lime-800 selection:bg-lime-800 selection:text-lime-400" placeholder="Password" autocomplete="off">
+    <span id="error-message-container" class="hidden text-red-500 text-sm  items-center gap-2 justify-center selection:bg-red-950">
+        <Icon name="warning"/>
+        <p id="error-message">
+            
+        </p>
+    </span>
+    <button type="submit" id="submit-button" class="bg-lime-400 text-black font-medium py-1 rounded-lg selection:bg-lime-800 selection:text-lime-400">
+        Log in
+    </button>
+</form>
+
+<script>
+</script>
+
+ 

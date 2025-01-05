@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components';
+interface Props {
+    size: 'large' | 'medium' | 'small';
+    icon : string;
+}
+
+const { size='small', icon="home" } = Astro.props;
+
+const sizeClasses = {
+    'large': 'w-[45rem] h-20 py-2 px-2',
+    'medium': 'w-96 h-20 py-2 px-2',
+    'small': 'w-76 h-20 py-2 px-2'
+}
+
+---
+
+<div class={sizeClasses[size] + " bg-neutral-950 border border-neutral-800 rounded-lg flex"}>
+    <span class="border border-neutral-800 text-neutral-400 w-16 mr-2 rounded-md flex justify-center items-center">
+        <Icon name={ icon } />
+    </span>
+    <section>
+        <slot />
+    </section>
+</div>
