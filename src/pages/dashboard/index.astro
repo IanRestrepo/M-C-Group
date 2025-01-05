@@ -11,20 +11,20 @@ const tickets = await queryDb("SELECT * FROM Tickets");
 ---
 
 <DashboardLayout>
-<section class="py-10 px-5 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 xl:gap-5 lg:gap-5 md:gap-5 gap-5 text-white w-full">
-            <Card size='medium' icon='admins'>
+<section class="py-10 px-5 grid grid-cols-1 lg:grid-cols-4 place-items-center text-white w-full">
+            <Card size='small' icon='admins'>
                 <small class="text-neutral-600 text-sm">Admins</small>
                 <h1 class="text-lg w-full">{ admins.rows.length } Admins / Moderators</h1>
             </Card>
-            <Card size='medium' icon='admin'>
+            <Card size='small' icon='admin'>
                 <small class="text-neutral-600 text-sm">Active Sessions</small>
                 <h1 class="text-lg w-full">{ sessions.rows.length } Active sessions</h1>
             </Card>
-            <Card size='medium' icon='admins'>
+            <Card size='small' icon='admins'>
                 <small class="text-neutral-600 text-sm">Tickets</small>
                 <h1 class="text-lg w-full">{ tickets. rows.length } Tickets</h1>
             </Card>
-            <Card size='medium' icon='server'>
+            <Card size='small' icon='server'>
                 <small class="text-neutral-600 text-sm">DB Calls ( Columns )</small>
                 <h1 class="text-lg w-full">{ admins.columns.length + sessions.columns.length  + tickets.columns.length }</h1>
             </Card>

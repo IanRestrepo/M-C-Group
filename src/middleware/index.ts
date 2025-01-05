@@ -2,7 +2,7 @@ import { queryDb } from "@lib/db";
 import { defineMiddleware } from "astro:middleware";
 
 export const onRequest = defineMiddleware(async ({ url, cookies }, next) => {
-  const protectedRoutes = ['/dashboard', '/dashboard/admins'];
+  const protectedRoutes = ['/dashboard', '/dashboard/admins', '/dashboard/posts', '/dashboard/tickets'];
 
   if ( !protectedRoutes.includes(url.pathname) && url.pathname !== "/") {
     return next();
