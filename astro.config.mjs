@@ -13,6 +13,9 @@ export default defineConfig({
   adapter: node({
   mode: 'standalone'
 }),
+server: {
+  port: import.meta.env.PORT || 3000
+},
 
   integrations: [tailwind(), icon()]
 });
